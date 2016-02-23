@@ -8,11 +8,14 @@ use Facebook\Exceptions\FacebookResponseException;
 use Facebook\Exceptions\FacebookSDKException;
 
 session_start();
+$cfg = parse_ini_file("config.ini");
 $fb = new Facebook([
+  'app_id' => $cfg[app_id],
+  'app_secret' => $cfg[app_secret],
   'default_graph_version' => 'v2.5',
 ]);
 
-$config['app_id'] = '';
+$config['app_id'] = $cfg[app_id];
 $helper = $fb->getRedirectLoginHelper();
 
 try {
